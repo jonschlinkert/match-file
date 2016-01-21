@@ -43,11 +43,12 @@
     "related": {
       "list": [
         "assemble",
-        "verb",
-        "templates",
         "gulp",
+        "templates",
+        "verb",
         "vinyl"
       ]
-    }
+    },
+    "toc": false
   }
 }
