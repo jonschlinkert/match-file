@@ -1,0 +1,53 @@
+{
+  "name": "match-file",
+  "description": "Returns true when the given `name` matches any of the path properties on a vinyl file",
+  "version": "0.1.0",
+  "homepage": "https://github.com/jonschlinkert/match-file",
+  "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
+  "repository": "jonschlinkert/match-file",
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/match-file/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "gulp-format-md": "^0.1.5",
+    "mocha": "^2.3.4",
+    "vinyl": "^1.1.1"
+  },
+  "keywords": [
+    "assemble",
+    "collection",
+    "file",
+    "find",
+    "gulpfriendly",
+    "match",
+    "view",
+    "vinyl"
+  ],
+  "verb": {
+    "layout": "default",
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "related": {
+      "list": [
+        "assemble",
+        "verb",
+        "templates",
+        "gulp",
+        "vinyl"
+      ]
+    }
+  }
+}
