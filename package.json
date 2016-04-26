@@ -1,7 +1,7 @@
 {
   "name": "match-file",
-  "description": "Returns true when the given `name` matches any of the path properties on a vinyl file",
-  "version": "0.1.0",
+  "description": "Returns true when the given `name` matches any of the path properties on a vinyl file.",
+  "version": "0.2.0",
   "homepage": "https://github.com/jonschlinkert/match-file",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "repository": "jonschlinkert/match-file",
@@ -19,10 +19,18 @@
   "scripts": {
     "test": "mocha"
   },
-  "dependencies": {},
+  "dependencies": {
+    "micromatch": "^2.3.8"
+  },
   "devDependencies": {
-    "gulp-format-md": "^0.1.5",
-    "mocha": "^2.3.4",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^2.0.0",
+    "gulp-format-md": "^0.1.9",
+    "gulp-istanbul": "^0.10.4",
+    "gulp-mocha": "^2.2.0",
+    "lazy-cache": "^1.0.4",
+    "mocha": "^2.4.5",
+    "through2": "^2.0.1",
     "vinyl": "^1.1.1"
   },
   "keywords": [
@@ -36,19 +44,30 @@
     "vinyl"
   ],
   "verb": {
-    "layout": "default",
     "plugins": [
       "gulp-format-md"
     ],
     "related": {
       "list": [
         "assemble",
-        "gulp",
-        "templates",
-        "verb",
-        "vinyl"
+        "generate",
+        "get-view",
+        "micromatch",
+        "verb"
       ]
     },
-    "toc": false
+    "toc": false,
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
+    "lint": {
+      "reflinks": true
+    },
+    "reflinks": [
+      "micromatch",
+      "gulp",
+      "verb"
+    ]
   }
 }
