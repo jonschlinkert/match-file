@@ -1,13 +1,13 @@
-# match-file [![NPM version](https://img.shields.io/npm/v/match-file.svg?style=flat)](https://www.npmjs.com/package/match-file) [![NPM downloads](https://img.shields.io/npm/dm/match-file.svg?style=flat)](https://npmjs.org/package/match-file) [![Build Status](https://img.shields.io/travis/jonschlinkert/match-file.svg?style=flat)](https://travis-ci.org/jonschlinkert/match-file)
+# match-file [![NPM version](https://img.shields.io/npm/v/match-file.svg?style=flat)](https://www.npmjs.com/package/match-file) [![NPM monthly downloads](https://img.shields.io/npm/dm/match-file.svg?style=flat)](https://npmjs.org/package/match-file)  [![NPM total downloads](https://img.shields.io/npm/dt/match-file.svg?style=flat)](https://npmjs.org/package/match-file) [![Linux Build Status](https://img.shields.io/travis/jonschlinkert/match-file.svg?style=flat&label=Travis)](https://travis-ci.org/jonschlinkert/match-file)
 
-Returns true when the given `name` matches any of the path properties on a vinyl file.
+> Returns true when the given `name` matches any of the path properties on a vinyl file.
 
 ## Install
 
 Install with [npm](https://www.npmjs.com/):
 
 ```sh
-$ npm install match-file --save
+$ npm install --save match-file
 ```
 
 ## Usage
@@ -181,54 +181,50 @@ function filter(pattern, options) {
 }
 ```
 
-## Related projects
+## About
 
-You might also be interested in these projects:
+### Related projects
 
-* [assemble](https://www.npmjs.com/package/assemble): Assemble is a powerful, extendable and easy to use static site generator for node.js. Used… [more](https://www.npmjs.com/package/assemble) | [homepage](https://github.com/assemble/assemble)
-* [generate](https://www.npmjs.com/package/generate): Fast, composable, highly extendable project generator with a user-friendly and expressive API. | [homepage](https://github.com/generate/generate)
-* [get-view](https://www.npmjs.com/package/get-view): Utility for getting an assemble view from a collection object. | [homepage](https://github.com/jonschlinkert/get-view)
-* [micromatch](https://www.npmjs.com/package/micromatch): Glob matching for javascript/node.js. A drop-in replacement and faster alternative to minimatch and multimatch. | [homepage](https://github.com/jonschlinkert/micromatch)
-* [verb](https://www.npmjs.com/package/verb): Documentation generator for GitHub projects. Verb is extremely powerful, easy to use, and is used… [more](https://www.npmjs.com/package/verb) | [homepage](https://github.com/verbose/verb)
+* [assemble](https://www.npmjs.com/package/assemble): Get the rocks out of your socks! Assemble makes you fast at creating web projects… [more](https://github.com/assemble/assemble) | [homepage](https://github.com/assemble/assemble "Get the rocks out of your socks! Assemble makes you fast at creating web projects. Assemble is used by thousands of projects for rapid prototyping, creating themes, scaffolds, boilerplates, e-books, UI components, API documentation, blogs, building websit")
+* [generate](https://www.npmjs.com/package/generate): Command line tool and developer framework for scaffolding out new GitHub projects. Generate offers the… [more](https://github.com/generate/generate) | [homepage](https://github.com/generate/generate "Command line tool and developer framework for scaffolding out new GitHub projects. Generate offers the robustness and configurability of Yeoman, the expressiveness and simplicity of Slush, and more powerful flow control and composability than either.")
+* [get-view](https://www.npmjs.com/package/get-view): Utility for getting an assemble view from a collection object. | [homepage](https://github.com/jonschlinkert/get-view "Utility for getting an assemble view from a collection object.")
+* [micromatch](https://www.npmjs.com/package/micromatch): Glob matching for javascript/node.js. A drop-in replacement and faster alternative to minimatch and multimatch. | [homepage](https://github.com/jonschlinkert/micromatch "Glob matching for javascript/node.js. A drop-in replacement and faster alternative to minimatch and multimatch.")
+* [verb](https://www.npmjs.com/package/verb): Documentation generator for GitHub projects. Verb is extremely powerful, easy to use, and is used… [more](https://github.com/verbose/verb) | [homepage](https://github.com/verbose/verb "Documentation generator for GitHub projects. Verb is extremely powerful, easy to use, and is used on hundreds of projects of all sizes to generate everything from API docs to readmes.")
 
-## Contributing
+### Contributing
 
-Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/jonschlinkert/match-file/issues/new).
+Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](../../issues/new).
 
-## Building docs
+### Building docs
 
-Generate readme and API documentation with [verb](https://github.com/verbose/verb):
+_(This project's readme.md is generated by [verb](https://github.com/verbose/verb-generate-readme), please don't edit the readme directly. Any changes to the readme must be made in the [.verb.md](.verb.md) readme template.)_
 
-```sh
-$ npm install verb && npm run docs
-```
-
-Or, if [verb](https://github.com/verbose/verb) is installed globally:
+To generate the readme, run the following command:
 
 ```sh
-$ verb
+$ npm install -g verbose/verb#dev verb-generate-readme && verb
 ```
 
-## Running tests
+### Running tests
 
-Install dev dependencies:
+Running and reviewing unit tests is a great way to get familiarized with a library and its API. You can install dependencies and run tests with the following command:
 
 ```sh
-$ npm install -d && npm test
+$ npm install && npm test
 ```
 
-## Author
+### Author
 
 **Jon Schlinkert**
 
 * [github/jonschlinkert](https://github.com/jonschlinkert)
-* [twitter/jonschlinkert](http://twitter.com/jonschlinkert)
+* [twitter/jonschlinkert](https://twitter.com/jonschlinkert)
 
-## License
+### License
 
-Copyright © 2016, [Jon Schlinkert](https://github.com/jonschlinkert).
-Released under the [MIT license](https://github.com/jonschlinkert/match-file/blob/master/LICENSE).
+Copyright © 2017, [Jon Schlinkert](https://github.com/jonschlinkert).
+MIT
 
 ***
 
-_This file was generated by [verb](https://github.com/verbose/verb), v0.9.0, on April 26, 2016._
+_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.4.2, on February 01, 2017._
