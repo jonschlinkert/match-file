@@ -20,18 +20,16 @@
     "test": "mocha"
   },
   "dependencies": {
-    "micromatch": "^2.3.8"
+    "isobject": "^3.0.0",
+    "micromatch": "^2.3.11",
+    "parse-filepath": "^1.0.1"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-eslint": "^2.0.0",
-    "gulp-format-md": "^0.1.9",
-    "gulp-istanbul": "^0.10.4",
-    "gulp-mocha": "^2.2.0",
-    "lazy-cache": "^1.0.4",
-    "mocha": "^2.4.5",
-    "through2": "^2.0.1",
-    "vinyl": "^1.1.1"
+    "gulp-format-md": "^0.1.11",
+    "lazy-cache": "^2.0.2",
+    "mocha": "^3.2.0",
+    "vinyl": "^2.0.1"
   },
   "keywords": [
     "assemble",
@@ -65,8 +63,8 @@
       "reflinks": true
     },
     "reflinks": [
-      "micromatch",
       "gulp",
+      "micromatch",
       "verb"
     ]
   }
