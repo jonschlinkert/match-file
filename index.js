@@ -7,6 +7,8 @@
 
 'use strict';
 
+var isObject = require('isobject');
+var parse = require('parse-filepath');
 var mm = require('micromatch');
 var path = require('path');
 
@@ -14,16 +16,26 @@ function matchFile(name, file) {
   if (typeof name !== 'string') {
     throw new TypeError('expected name to be a string');
   }
-  if (!isObject(file)) {
+  if (!isObject(file) || file._isVinyl !== true) {
     throw new TypeError('expected file to be an object');
   }
 
   return (name === file.key)
+    || (name === file.history[0])
     || (name === file.path)
     || (name === file.relative)
     || (name === file.basename)
     || (name === file.stem)
-    || (path.resolve(file.path) === path.resolve(name));
+    || (path.resolve(file.path) === path.resolve(name))
+    || matchOrig(name, file);
+}
+
+function matchOrig(name, file) {
+  var orig = parse(file.history[0]);
+  return (name === orig.path)
+    || (name === orig.relative)
+    || (name === orig.basename)
+    || (name === orig.stem);
 }
 
 matchFile.matcher = function(pattern, options) {
@@ -37,13 +49,9 @@ matchFile.matcher = function(pattern, options) {
       return isMatch(file);
     }
 
-    return (pattern === file.key)
-      || (pattern === file.path)
-      || (pattern === file.relative)
-      || (pattern === file.basename)
-      || (pattern === file.stem)
-      || (path.resolve(file.path) === path.resolve(pattern))
+    return matchFile(pattern, file)
       || isMatch(file.key)
+      || isMatch(file.history[0])
       || isMatch(file.path)
       || isMatch(file.relative)
       || isMatch(file.basename)
@@ -55,10 +63,6 @@ matchFile.matcher = function(pattern, options) {
 matchFile.isMatch = function(patterns, file, options) {
   return matchFile.matcher(patterns, options)(file);
 };
-
-function isObject(val) {
-  return val && typeof val === 'object';
-}
 
 /**
  * Expose `matchFile`
