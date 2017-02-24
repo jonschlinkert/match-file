@@ -9,12 +9,12 @@ var file;
 describe('match-file', function() {
   describe('matchFile', function() {
     beforeEach(function() {
-      file = new File({path: 'a/b/c/d/e.txt', base: 'a/b/c'});
+      file = new File({path: 'a/b/c/d/word.txt', base: 'a/b/c'});
       file.key = 'zzz/a.txt'; // arbitrary key (assemble compatibility)
     });
 
     it('should return true if file.path matches name', function() {
-      assert(matchFile('a/b/c/d/e.txt', file));
+      assert(matchFile('a/b/c/d/word.txt', file));
     });
 
     it('should return false if file.path does not match name', function() {
@@ -22,7 +22,7 @@ describe('match-file', function() {
     });
 
     it('should return true if file.relative matches name', function() {
-      assert(matchFile('d/e.txt', file));
+      assert(matchFile('d/word.txt', file));
     });
 
     it('should return false if file.relative does not match name', function() {
@@ -30,15 +30,23 @@ describe('match-file', function() {
     });
 
     it('should return true if file.basename matches name', function() {
-      assert(matchFile('e.txt', file));
+      assert(matchFile('word.txt', file));
+    });
+
+    it('should strip leading `./` before performing match', function() {
+      assert(matchFile('./word.txt', file));
     });
 
     it('should return false if file.basename does not match name', function() {
       assert(!matchFile('foo.txt', file));
     });
 
+    it('should not match partial words', function() {
+      assert(!matchFile('ord.txt', file));
+    });
+
     it('should return true if file.stem matches name', function() {
-      assert(matchFile('e', file));
+      assert(matchFile('word', file));
     });
 
     it('should return false if file.stem does not match name', function() {
@@ -56,12 +64,12 @@ describe('match-file', function() {
 
   describe('.isMatch', function() {
     beforeEach(function() {
-      file = new File({path: 'a/b/c/d/e.txt', base: 'a/b/c'});
+      file = new File({path: 'a/b/c/d/word.txt', base: 'a/b/c'});
       file.key = 'zzz/a.txt'; // arbitrary key (assemble compatibility)
     });
 
     it('should return true if file.path matches name', function() {
-      assert(matchFile.isMatch('a/b/c/d/e.txt', file));
+      assert(matchFile.isMatch('a/b/c/d/word.txt', file));
     });
 
     it('should return true if a glob pattern matches `file.path`', function() {
@@ -85,7 +93,7 @@ describe('match-file', function() {
     });
 
     it('should return true if file.relative matches name', function() {
-      assert(matchFile.isMatch('d/e.txt', file));
+      assert(matchFile.isMatch('d/word.txt', file));
     });
 
     it('should return false if file.relative does not match name', function() {
@@ -93,7 +101,7 @@ describe('match-file', function() {
     });
 
     it('should return true if file.basename matches name', function() {
-      assert(matchFile.isMatch('e.txt', file));
+      assert(matchFile.isMatch('word.txt', file));
     });
 
     it('should return false if file.basename does not match name', function() {
@@ -101,7 +109,7 @@ describe('match-file', function() {
     });
 
     it('should return true if file.stem matches name', function() {
-      assert(matchFile.isMatch('e', file));
+      assert(matchFile.isMatch('word', file));
     });
 
     it('should return false if file.stem does not match name', function() {
@@ -119,7 +127,7 @@ describe('match-file', function() {
 
   describe('.matcher', function() {
     beforeEach(function() {
-      file = new File({path: 'a/b/c/d/e.txt', base: 'a/b/c'});
+      file = new File({path: 'a/b/c/d/word.txt', base: 'a/b/c'});
       file.key = 'zzz/a.txt'; // arbitrary key (assemble compatibility)
     });
 
@@ -139,7 +147,7 @@ describe('match-file', function() {
     });
 
     it('should return true if file.relative matches the pattern', function() {
-      var isMatch = matchFile.matcher('d/e.txt');
+      var isMatch = matchFile.matcher('d/word.txt');
       assert(isMatch(file));
     });
 
@@ -149,7 +157,7 @@ describe('match-file', function() {
     });
 
     it('should return true if file.basename matches name', function() {
-      var isMatch = matchFile.matcher('e.txt');
+      var isMatch = matchFile.matcher('word.txt');
       assert(isMatch(file));
     });
 
@@ -159,7 +167,7 @@ describe('match-file', function() {
     });
 
     it('should return true if file.stem matches name', function() {
-      var isMatch = matchFile.matcher('e');
+      var isMatch = matchFile.matcher('word');
       assert(isMatch(file));
     });
 

@@ -7,10 +7,10 @@
 
 'use strict';
 
-var isObject = require('isobject');
-var parse = require('parse-filepath');
-var mm = require('micromatch');
 var path = require('path');
+var isGlob = require('is-glob');
+var isObject = require('isobject');
+var mm = require('micromatch');
 
 function matchFile(name, file) {
   if (typeof name !== 'string') {
@@ -20,27 +20,21 @@ function matchFile(name, file) {
     throw new TypeError('expected file to be an object');
   }
 
-  return (name === file.key)
-    || (name === file.history[0])
-    || (name === file.path)
-    || (name === file.relative)
-    || (name === file.basename)
-    || (name === file.stem)
-    || (path.resolve(file.path) === path.resolve(name))
-    || matchOrig(name, file);
-}
-
-function matchOrig(name, file) {
-  var orig = parse(file.history[0]);
-  return (name === orig.path)
-    || (name === orig.relative)
-    || (name === orig.basename)
-    || (name === orig.stem);
+  return endsWith(file.history[0], name)
+    || endsWith(file.path, name)
+    || file.stem === name
+    || file.key === name;
 }
 
 matchFile.matcher = function(pattern, options) {
-  if (typeof pattern !== 'string' && !Array.isArray(pattern)) {
-    throw new TypeError('expected pattern to be a string or array');
+  if (typeof pattern !== 'string') {
+    throw new TypeError('expected pattern to be a string');
+  }
+
+  if (!isGlob(pattern)) {
+    return function(file) {
+      return matchFile(pattern, file);
+    };
   }
 
   var isMatch = mm.matcher(pattern, options);
@@ -53,16 +47,30 @@ matchFile.matcher = function(pattern, options) {
       || isMatch(file.key)
       || isMatch(file.history[0])
       || isMatch(file.path)
+      || isMatch(path.resolve(file.path))
       || isMatch(file.relative)
       || isMatch(file.basename)
-      || isMatch(file.stem)
-      || isMatch(path.resolve(file.path));
+      || isMatch(file.stem);
   };
 };
 
 matchFile.isMatch = function(patterns, file, options) {
   return matchFile.matcher(patterns, options)(file);
 };
+
+function endsWith(filepath, name) {
+  if (name.slice(0, 2) === './') {
+    name = name.slice(2);
+  }
+
+  var len = name.length;
+  var isMatch = filepath.slice(-len) === name;
+  if (isMatch) {
+    var ch = filepath.slice(-(len + 1), -len);
+    return ch === '' || ch === '/' || ch === '\\';
+  }
+  return false;
+}
 
 /**
  * Expose `matchFile`
