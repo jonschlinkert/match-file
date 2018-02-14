@@ -20,16 +20,14 @@
     "test": "mocha"
   },
   "dependencies": {
-    "is-glob": "^3.1.0",
-    "isobject": "^3.0.0",
-    "micromatch": "^2.3.11"
+    "is-glob": "^4.0.0",
+    "micromatch": "^3.1.5",
+    "path-ends-with": "^1.1.0"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-format-md": "^0.1.11",
-    "lazy-cache": "^2.0.2",
-    "mocha": "^3.2.0",
-    "vinyl": "^2.0.1"
+    "gulp-format-md": "^1.0.0",
+    "mocha": "^3.5.3",
+    "vinyl": "^2.1.0"
   },
   "keywords": [
     "assemble",
