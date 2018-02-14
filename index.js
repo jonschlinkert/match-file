@@ -1,29 +1,32 @@
 /*!
  * match-file <https://github.com/jonschlinkert/match-file>
  *
- * Copyright (c) 2016, Jon Schlinkert.
- * Licensed under the MIT License.
+ * Copyright (c) 2016-2018, Jon Schlinkert.
+ * Released under the MIT License.
  */
 
 'use strict';
 
 var path = require('path');
 var isGlob = require('is-glob');
-var isObject = require('isobject');
+var endsWith = require('path-ends-with');
 var mm = require('micromatch');
 
 function matchFile(name, file) {
   if (typeof name !== 'string') {
     throw new TypeError('expected name to be a string');
   }
-  if (!isObject(file) || file._isVinyl !== true) {
+
+  if (!isVinyl(file)) {
     throw new TypeError('expected file to be an object');
   }
 
-  return endsWith(file.history[0], name)
+  return file.key === name
+    || file.path === name
+    || file.history[0] === name
+    || endsWith(file.history[0], name)
     || endsWith(file.path, name)
-    || file.stem === name
-    || file.key === name;
+    || file.stem === name;
 }
 
 matchFile.matcher = function(pattern, options) {
@@ -58,18 +61,8 @@ matchFile.isMatch = function(patterns, file, options) {
   return matchFile.matcher(patterns, options)(file);
 };
 
-function endsWith(filepath, name) {
-  if (name.slice(0, 2) === './') {
-    name = name.slice(2);
-  }
-
-  var len = name.length;
-  var isMatch = filepath.slice(-len) === name;
-  if (isMatch) {
-    var ch = filepath.slice(-(len + 1), -len);
-    return ch === '' || ch === '/' || ch === '\\';
-  }
-  return false;
+function isVinyl(file) {
+  return file && typeof file === 'object' && file._isVinyl === true;
 }
 
 /**
